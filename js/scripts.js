@@ -1,37 +1,51 @@
-var parseNumber = function(){
-	return parseInt(prompt("Enter a number"));
-};
-
-var num1 = parseNumber();
-var num2 = parseNumber();
+// Business logic:
 
 var addition = function(num1, num2) {
-	alert(num1 + num2);
+	return(num1 + num2);
 }
 
 var subtraction = function(num1, num2) {
-	alert(num1 - num2);
+	return(num1 - num2);
 }
 
 var multiplication = function(num1, num2) {
-	alert(num1 * num2);
+	return(num1 * num2);
 }
 
 var division = function(num1, num2) {
-	alert(num1 / num2);
+	return(num1 / num2);
 }
 
-addition(num1,num2);
+var getNumber1 = function() {
+	var num1 = parseInt($("#number1").val());
+	return num1;
+}
 
-var num3 = parseNumber();
-var num4 = parseNumber();
+var getNumber2 = function() {
+	var num2 = parseInt($("#number2").val());
+	return num2;
+}
 
-subtraction(num3, num4);
+// User interface logic:
 
-var num5 = parseNumber();
-var num6 = parseNumber();
-multiplication(num5, num6);
+$(document).ready(function() {
+	$(".btn").click(function() {
+		var btnText = $(this).text();
+		var num1 = getNumber1();
+		var num2 = getNumber2();
 
-var num7 = parseNumber();
-var num8 = parseNumber();
-division(num7, num8);
+		if ( btnText === "ADD" ) {
+			$("h3").text(addition(num1, num2));
+		} else if  ( btnText === "SUBTRACT"){
+			$("h3").text(subtraction(num1, num2));
+
+		} else if  ( btnText === "MULTIPLY"){
+			$("h3").text(multiplication(num1, num2));
+
+		} else if  ( btnText === "DIVIDE"){
+			$("h3").text(division(num1, num2));
+		}
+	});
+
+
+});
