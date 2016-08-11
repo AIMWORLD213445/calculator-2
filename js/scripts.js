@@ -29,22 +29,21 @@ var getNumber2 = function() {
 // User interface logic:
 
 $(document).ready(function() {
-	$(".btn").click(function() {
-		var btnText = $(this).text();
-		var num1 = getNumber1();
-		var num2 = getNumber2();
-
-		if ( btnText === "ADD" ) {
-			$("h3").text(addition(num1, num2));
-		} else if  ( btnText === "SUBTRACT"){
-			$("h3").text(subtraction(num1, num2));
-
-		} else if  ( btnText === "MULTIPLY"){
-			$("h3").text(multiplication(num1, num2));
-
-		} else if  ( btnText === "DIVIDE"){
-			$("h3").text(division(num1, num2));
-		}
+	$("form#calculator").submit(function() {
+		event.preventDefault();
+    var number1 = parseInt($("#number1").val());
+    var number2 = parseInt($("#number2").val());
+    var operator = $("input:radio[name=operator]:checked").val();
+		if (operator === "add") {
+      result = addition(number1, number2);
+    } else if (operator === "subtract") {
+      result = subtraction(number1, number2);
+    } else if (operator === "multiply") {
+      result = multiplication(number1, number2);
+    } else if (operator === "divide") {
+      result = division(number1, number2);
+    }
+    $("#output").text(result);
 	});
 
 
